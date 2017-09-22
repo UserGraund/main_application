@@ -8,3 +8,5 @@ DATABASES = {
         'PORT': 'your_database_port'
     }
 }
+
+SECRET_KEY= 'your_special_secret_key'
