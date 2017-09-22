@@ -1,0 +1,15 @@
+dist: trusty
+language: python
+python:
+  - "2.7"
+  - "3.4"
+  - "3.5"
+  - "3.6"
+services:
+  - postgresql
+install: "pip install -r requirements_travis.txt"
+script: "coverage run manage.py test --settings=config.settings_travis"
+before_script:
+  - psql -c 'CREATE DATABASE main_app_travis;' -U postgres
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
