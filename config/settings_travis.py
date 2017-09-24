@@ -4,6 +4,8 @@ from config.settings import *
 
 SITE_ID = 1
 
+SECRET_KEY = '1234567890'
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
