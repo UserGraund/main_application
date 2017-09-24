@@ -2,6 +2,8 @@ from __future__ import unicode_literals
 
 from config.settings import *
 
+SITE_ID = 1
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
