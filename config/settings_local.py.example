@@ -9,4 +9,8 @@ DATABASES = {
     }
 }
 
+SITE_ID = 1
+
+DEBUG = True
+
 SECRET_KEY= 'your_special_secret_key'

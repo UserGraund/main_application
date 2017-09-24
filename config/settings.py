@@ -36,6 +36,8 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = (
     'suit',
 
+    'accounts.apps.AccountsConfig',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -91,6 +93,9 @@ DATABASES = {
     }
 }
 
+# User settings
+AUTH_USER_MODEL = 'accounts.Account'
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
@@ -130,6 +135,7 @@ MEDIA_URL = '/media/'
 SUIT_CONFIG = {
     'ADMIN_NAME': 'Suit Admin',
     'MENU': (
+        {'app':  'accounts', 'models': ('account', )},
         'auth',
         'sites',
     )
