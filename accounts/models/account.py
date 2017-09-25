@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 
+from django.template.defaultfilters import slugify
 from django.db import models
 from django.contrib.auth.models import (
     BaseUserManager,
@@ -85,6 +86,8 @@ class Account(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(max_length=30, blank=True)
     last_name = models.CharField(max_length=30, blank=True)
 
+    slug = models.SlugField(max_length=50)
+
     email = models.EmailField(unique=True)
 
     is_active = models.BooleanField(default=True)
@@ -107,3 +110,8 @@ class Account(AbstractBaseUser, PermissionsMixin):
     @property
     def is_staff(self):
         return self.is_superuser
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.username)
+
+        super(Account, self).save(*args, **kwargs)
