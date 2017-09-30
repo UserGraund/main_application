@@ -80,11 +80,9 @@ class Account(AbstractBaseUser, PermissionsMixin):
     Account model
     """
 
-    object = AccountManager()
+    objects = AccountManager()
 
     username = models.CharField(max_length=30, unique=True)
-    first_name = models.CharField(max_length=30, blank=True)
-    last_name = models.CharField(max_length=30, blank=True)
 
     slug = models.SlugField(max_length=50)
 

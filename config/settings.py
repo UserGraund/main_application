@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 from __future__ import unicode_literals
 
+from datetime import timedelta
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
@@ -36,8 +38,6 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = (
     'suit',
 
-    'accounts.apps.AccountsConfig',
-
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -48,7 +48,9 @@ INSTALLED_APPS = (
 
     'rest_framework',
 
+    'accounts.apps.AccountsConfig',
     'frontend.apps.FrontendConfig',
+    'forum.apps.ForumConfig',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -135,19 +137,31 @@ MEDIA_URL = '/media/'
 SUIT_CONFIG = {
     'ADMIN_NAME': 'Suit Admin',
     'MENU': (
-        {'app':  'accounts', 'models': ('account', )},
+        {'app': 'accounts', 'models': ('account', )},
+        {'app': 'forum', 'models': ('post', 'comment', 'forumtarget', )},
         'auth',
         'sites',
     )
 }
 
-# Django REST Framework
+# Django REST Framework & JWT settings
 
 REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 25,
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+    'PAGE_SIZE': 10,
 }
 
+JWT_AUTH = {
+    'JWT_EXPIRATION_DELTA': timedelta(hours=3),
+}
 
 try:
     from config.settings_local import *

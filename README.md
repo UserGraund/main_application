@@ -1,3 +1,3 @@
 # main_application
 
-Current target --> default django project
+Current target --> TEST TASK FORUM  (REST API PROJECT)
