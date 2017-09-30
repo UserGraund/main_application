@@ -47,6 +47,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
 
     'rest_framework',
+    'rest_framework_swagger',
 
     'accounts.apps.AccountsConfig',
     'frontend.apps.FrontendConfig',

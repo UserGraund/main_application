@@ -18,10 +18,15 @@ from __future__ import unicode_literals
 from django.conf.urls import include, url
 from django.contrib import admin
 
+from rest_framework_swagger.views import get_swagger_view
+
+schema_view = get_swagger_view(title='FORUM API')
+
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('frontend.urls', namespace='frontend')),
     url(r'^api/accounts/', include('accounts.api.urls', namespace='accounts_api')),
     url(r'^api/forum/', include('forum.api.urls', namespace='forum_api')),
+    url(r'^$', schema_view)
 ]
