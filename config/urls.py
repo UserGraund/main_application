@@ -25,4 +25,3 @@ urlpatterns = [
     url(r'^api/accounts/', include('accounts.api.urls', namespace='accounts_api')),
     url(r'^api/forum/', include('forum.api.urls', namespace='forum_api')),
 ]
-
